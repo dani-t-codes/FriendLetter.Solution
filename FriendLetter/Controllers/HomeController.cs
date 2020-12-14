@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using FriendLetter.Models;
 
 namespace FriendLetter.Controllers
 {
@@ -12,7 +13,15 @@ namespace FriendLetter.Controllers
     public string Goodbye() { return "Goodbye friend.";}
 
     [Route("/")]
-    public ActionResult Letter() { return View(); }
+    public ActionResult Letter()//ActionResult is a built-in MVC class that handles rendering views; View() is a built-in method from `Microsoft.AspNetCore.Mvc` namespace to return a view when route is invoked
+    {
+      LetterVariable myLetterVariable = new LetterVariable();
+      myLetterVariable.Recipient = "Lina";
+      myLetterVariable.Sender = "Jasmine";
+      return View(myLetterVariable);
+    }
 
+    [Route("/form")]
+    public ActionResult Form() { return View(); }
   }
 }
